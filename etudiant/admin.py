@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(Section)
-admin.site.register(Classe)
-
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table, TableStyle
@@ -11,6 +8,15 @@ from reportlab.lib import colors
 
 from django.http import HttpResponse
 from django.utils.html import format_html
+
+class ControleAdminArea(admin.AdminSite):
+    site_header = "SHALOM"
+    site_title = "SHALOM"
+
+controlesite = ControleAdminArea(name='ControleAdmin')
+
+controlesite.register(Section)
+controlesite.register(Classe)
 
 def download_eleve_pdf(self, request, queryset):
     model_name = self.model.__name__

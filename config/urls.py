@@ -3,9 +3,10 @@ from django.urls import path
 from django.conf.urls.static import static
 from config import settings
 from etudiant.views import index_view 
+from etudiant.admin import controlesite
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', controlesite.urls),
     path('', index_view, name='index')
 ]
 
