@@ -6,8 +6,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors 
+from etudiant.admin import controlesite
 
 from django.http import HttpResponse
+from django.utils.html import format_html
 
 def download_pdf(self, request, queryset):
     model_name = self.model.__name__
@@ -55,9 +57,21 @@ class FraisAdmin(admin.ModelAdmin):
     
     actions = [download_pdf]
 
-admin.site.register(Frais, FraisAdmin)
+controlesite.register(Frais, FraisAdmin)
 
-admin.site.register(Payement)
+class PayementAdmin(admin.ModelAdmin):
+    def image_tag(self, obj):
+        return format_html('<img src="{}" style="max-width:80px; max-height:80px"/>'.format(obj.qrcode.url))
+    image_tag.short_description = "QR Code"
+    list_display = (
+        'id',
+        'eleve',
+        'datepayement',
+        'motantpaye',
+        'image_tag'
+    )
+    ordering = ('id',)
+controlesite.register(Payement, PayementAdmin)
 
 
 

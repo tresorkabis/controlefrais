@@ -73,4 +73,4 @@ class EleveAdmin(admin.ModelAdmin):
     
     actions = [download_eleve_pdf]
 
-admin.site.register(Eleve, EleveAdmin)
+controlesite.register(Eleve, EleveAdmin)
