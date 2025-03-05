@@ -27,7 +27,7 @@ class Eleve(models.Model):
     datenaissance = models.DateField()
     lieunaissance = models.CharField(max_length=50)
     nomtutaire = models.CharField(max_length=100)
-    classe = models.ForeignKey(Classe, on_delete=models.CASCADE)
+    classe = models.ForeignKey(Classe, on_delete=models.CASCADE, )
     qrcode = models.ImageField(upload_to="qrcode/", null=True, blank=True)
 
     def __str__(self):
