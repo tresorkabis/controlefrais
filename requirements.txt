@@ -1,6 +1,6 @@
 asgiref==3.8.1
 chardet==5.2.0
-Django==5.1.1
+Django
 pillow==10.4.0
 pypng==0.20220715.0
 qrcode==7.4.2
